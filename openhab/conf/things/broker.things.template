@@ -1,0 +1,1 @@
+Bridge mqtt:broker:mosquitto "Mosquitto (TLS 8883)" [ host="mosquitto", port=8883, secure=true, certificatePinning=true, username="openhab", password="__MQTT_PASS_OPENHAB__", clientID="openhab-flat", qos=1 ]
