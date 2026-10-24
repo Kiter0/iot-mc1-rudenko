@@ -5,7 +5,8 @@ cd "$(dirname "$0")/.."
 export MSYS_NO_PATHCONV=1
 
 if [ ! -f .env ]; then
-  while IFS= read -r line; do
+  while IFS= read -r line || [ -n "$line" ]; do
+    line="${line%$'\r'}"
     case "$line" in
       *=change_me) echo "${line%=change_me}=$(openssl rand -hex 12)" ;;
       *) echo "$line" ;;
