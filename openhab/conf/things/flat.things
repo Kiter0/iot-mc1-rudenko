@@ -1,54 +1,54 @@
-Thing mqtt:topic:flat_motion_livingroom (mqtt:broker:mosquitto) "Рух: вітальня" [ availabilityTopic="flat/livingroom/motion/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_motion_livingroom "Рух: вітальня" (mqtt:broker:mosquitto) [ availabilityTopic="flat/livingroom/motion/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type switch : value [ stateTopic="flat/livingroom/motion/telemetry", transformationPattern="JSONPATH:$.value", on="1", off="0" ]
         Type string : status [ stateTopic="flat/livingroom/motion/status" ]
 }
 
-Thing mqtt:topic:flat_motion_bedroom (mqtt:broker:mosquitto) "Рух: спальня" [ availabilityTopic="flat/bedroom/motion/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_motion_bedroom "Рух: спальня" (mqtt:broker:mosquitto) [ availabilityTopic="flat/bedroom/motion/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type switch : value [ stateTopic="flat/bedroom/motion/telemetry", transformationPattern="JSONPATH:$.value", on="1", off="0" ]
         Type string : status [ stateTopic="flat/bedroom/motion/status" ]
 }
 
-Thing mqtt:topic:flat_temperature (mqtt:broker:mosquitto) "Температура" [ availabilityTopic="flat/hall/temperature/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_temperature "Температура" (mqtt:broker:mosquitto) [ availabilityTopic="flat/hall/temperature/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type number : value [ stateTopic="flat/hall/temperature/telemetry", transformationPattern="JSONPATH:$.value" ]
         Type string : status [ stateTopic="flat/hall/temperature/status" ]
 }
 
-Thing mqtt:topic:flat_humidity (mqtt:broker:mosquitto) "Вологість" [ availabilityTopic="flat/hall/humidity/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_humidity "Вологість" (mqtt:broker:mosquitto) [ availabilityTopic="flat/hall/humidity/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type number : value [ stateTopic="flat/hall/humidity/telemetry", transformationPattern="JSONPATH:$.value" ]
         Type string : status [ stateTopic="flat/hall/humidity/status" ]
 }
 
-Thing mqtt:topic:flat_lux (mqtt:broker:mosquitto) "Освітленість" [ availabilityTopic="flat/hall/lux/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_lux "Освітленість" (mqtt:broker:mosquitto) [ availabilityTopic="flat/hall/lux/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type number : value [ stateTopic="flat/hall/lux/telemetry", transformationPattern="JSONPATH:$.value" ]
         Type string : status [ stateTopic="flat/hall/lux/status" ]
 }
 
-Thing mqtt:topic:flat_power (mqtt:broker:mosquitto) "Потужність" [ availabilityTopic="flat/main/power/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_power "Потужність" (mqtt:broker:mosquitto) [ availabilityTopic="flat/main/power/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type number : value [ stateTopic="flat/main/power/telemetry", transformationPattern="JSONPATH:$.value" ]
         Type string : status [ stateTopic="flat/main/power/status" ]
 }
 
-Thing mqtt:topic:flat_light_livingroom (mqtt:broker:mosquitto) "Світло: вітальня" [ availabilityTopic="flat/livingroom/light/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_light_livingroom "Світло: вітальня" (mqtt:broker:mosquitto) [ availabilityTopic="flat/livingroom/light/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type switch : power [ stateTopic="flat/livingroom/light/state", transformationPattern="JSONPATH:$.state", commandTopic="flat/livingroom/light/set", formatBeforePub="{\"state\":\"%s\"}", qos=1 ]
         Type dimmer : brightness [ stateTopic="flat/livingroom/light/state", transformationPattern="JSONPATH:$.brightness", commandTopic="flat/livingroom/light/set", formatBeforePub="{\"brightness\":%s}", qos=1 ]
         Type string : status [ stateTopic="flat/livingroom/light/status" ]
 }
 
-Thing mqtt:topic:flat_light_bedroom (mqtt:broker:mosquitto) "Світло: спальня" [ availabilityTopic="flat/bedroom/light/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_light_bedroom "Світло: спальня" (mqtt:broker:mosquitto) [ availabilityTopic="flat/bedroom/light/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type switch : power [ stateTopic="flat/bedroom/light/state", transformationPattern="JSONPATH:$.state", commandTopic="flat/bedroom/light/set", formatBeforePub="{\"state\":\"%s\"}", qos=1 ]
         Type dimmer : brightness [ stateTopic="flat/bedroom/light/state", transformationPattern="JSONPATH:$.brightness", commandTopic="flat/bedroom/light/set", formatBeforePub="{\"brightness\":%s}", qos=1 ]
         Type string : status [ stateTopic="flat/bedroom/light/status" ]
 }
 
-Thing mqtt:topic:flat_heater (mqtt:broker:mosquitto) "Обігрівач" [ availabilityTopic="flat/hall/heater/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
+Thing mqtt:topic:flat_heater "Обігрівач" (mqtt:broker:mosquitto) [ availabilityTopic="flat/hall/heater/status", payloadAvailable="online", payloadNotAvailable="offline" ] {
     Channels:
         Type switch : power [ stateTopic="flat/hall/heater/state", transformationPattern="JSONPATH:$.state", commandTopic="flat/hall/heater/set", formatBeforePub="{\"state\":\"%s\"}", qos=1 ]
         Type number : setpoint [ stateTopic="flat/hall/heater/state", transformationPattern="JSONPATH:$.setpoint", commandTopic="flat/hall/heater/set", formatBeforePub="{\"setpoint\":%s}", qos=1 ]
