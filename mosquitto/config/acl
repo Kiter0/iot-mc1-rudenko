@@ -1,0 +1,53 @@
+# --- адміністратор ---
+user admin
+topic readwrite #
+
+# --- openHAB: читає все, пише лише команди .../set ---
+user openhab
+topic read flat/+/+/telemetry
+topic read flat/+/+/state
+topic read flat/+/+/status
+topic write flat/livingroom/light/set
+topic write flat/bedroom/light/set
+topic write flat/hall/heater/set
+
+# --- сенсори: тільки своя телеметрія і статус ---
+user motion_livingroom
+topic write flat/livingroom/motion/telemetry
+topic write flat/livingroom/motion/status
+
+user motion_bedroom
+topic write flat/bedroom/motion/telemetry
+topic write flat/bedroom/motion/status
+
+user temperature
+topic write flat/hall/temperature/telemetry
+topic write flat/hall/temperature/status
+
+user humidity
+topic write flat/hall/humidity/telemetry
+topic write flat/hall/humidity/status
+
+user lux
+topic write flat/hall/lux/telemetry
+topic write flat/hall/lux/status
+
+user power
+topic write flat/main/power/telemetry
+topic write flat/main/power/status
+
+# --- актуатори: читають лише свій set, пишуть свої state/status ---
+user light_livingroom
+topic read flat/livingroom/light/set
+topic write flat/livingroom/light/state
+topic write flat/livingroom/light/status
+
+user light_bedroom
+topic read flat/bedroom/light/set
+topic write flat/bedroom/light/state
+topic write flat/bedroom/light/status
+
+user heater
+topic read flat/hall/heater/set
+topic write flat/hall/heater/state
+topic write flat/hall/heater/status
