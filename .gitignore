@@ -1,0 +1,9 @@
+.env
+certs/*.key
+certs/*.crt
+certs/*.srl
+certs/*.csr
+mosquitto/config/passwd
+openhab/conf/things/broker.things
+__pycache__/
+*.pyc
