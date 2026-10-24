@@ -1,0 +1,7 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    default = everyChange
+}
+Items {
+    Power_Flat, Temp_Hall : strategy = everyChange, everyMinute, restoreOnStartup
+}

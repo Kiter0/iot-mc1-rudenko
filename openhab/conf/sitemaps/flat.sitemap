@@ -1,0 +1,38 @@
+sitemap flat label="Енергоощадна квартира" {
+    Frame label="Тривоги та сповіщення" {
+        Switch item=Alarm_Overload label="Перевантаження (натисніть, щоб скинути)" mappings=[ON="ТРИВОГА",OFF="OK"] valuecolor=[ON="red",OFF="green"]
+        Text item=Alert_Text
+        Switch item=Eco_Mode label="Режим «Економ»" mappings=[ON="УВІМК",OFF="ВИМК"] valuecolor=[ON="orange",OFF="green"]
+    }
+    Frame label="Сенсори" {
+        Text item=Motion_Livingroom
+        Text item=Motion_Bedroom
+        Text item=Temp_Hall
+        Text item=Humidity_Hall
+        Text item=Lux_Hall
+        Text item=Power_Flat
+    }
+    Frame label="Керування" {
+        Switch item=Light_Livingroom_Switch label="Світло: вітальня"
+        Slider item=Light_Livingroom_Dim label="Яскравість: вітальня [%d %%]" minValue=0 maxValue=100 step=5
+        Switch item=Light_Bedroom_Switch label="Світло: спальня"
+        Slider item=Light_Bedroom_Dim label="Яскравість: спальня [%d %%]" minValue=0 maxValue=100 step=5
+        Switch item=Heater_Switch label="Обігрівач"
+        Setpoint item=Heater_Setpoint label="Уставка [%.1f °C]" minValue=5 maxValue=30 step=0.5
+        Text item=Heater_Heating
+    }
+    Frame label="Споживання потужності за останню годину" {
+        Chart item=Power_Flat period=h refresh=30000 service="rrd4j"
+    }
+    Frame label="Статус пристроїв" {
+        Text item=Status_motion_livingroom valuecolor=[offline="red",online="green"]
+        Text item=Status_motion_bedroom valuecolor=[offline="red",online="green"]
+        Text item=Status_temperature valuecolor=[offline="red",online="green"]
+        Text item=Status_humidity valuecolor=[offline="red",online="green"]
+        Text item=Status_lux valuecolor=[offline="red",online="green"]
+        Text item=Status_power valuecolor=[offline="red",online="green"]
+        Text item=Status_light_livingroom valuecolor=[offline="red",online="green"]
+        Text item=Status_light_bedroom valuecolor=[offline="red",online="green"]
+        Text item=Status_heater valuecolor=[offline="red",online="green"]
+    }
+}

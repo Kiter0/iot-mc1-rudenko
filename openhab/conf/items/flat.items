@@ -1,0 +1,32 @@
+// ===== Сенсори =====
+Switch Motion_Livingroom "Рух: вітальня [%s]" { channel="mqtt:topic:flat_motion_livingroom:value" }
+Switch Motion_Bedroom "Рух: спальня [%s]" { channel="mqtt:topic:flat_motion_bedroom:value" }
+Number Temp_Hall "Температура (коридор) [%.1f °C]" { channel="mqtt:topic:flat_temperature:value" }
+Number Humidity_Hall "Вологість (коридор) [%.0f %%]" { channel="mqtt:topic:flat_humidity:value" }
+Number Lux_Hall "Освітленість [%.0f лк]" { channel="mqtt:topic:flat_lux:value" }
+Number Power_Flat "Потужність мережі [%.0f Вт]" { channel="mqtt:topic:flat_power:value" }
+
+// ===== Актуатори =====
+Switch Light_Livingroom_Switch "Світло вітальня" { channel="mqtt:topic:flat_light_livingroom:power" }
+Dimmer Light_Livingroom_Dim "Яскравість вітальня [%d %%]" { channel="mqtt:topic:flat_light_livingroom:brightness" }
+Switch Light_Bedroom_Switch "Світло спальня" { channel="mqtt:topic:flat_light_bedroom:power" }
+Dimmer Light_Bedroom_Dim "Яскравість спальня [%d %%]" { channel="mqtt:topic:flat_light_bedroom:brightness" }
+Switch Heater_Switch "Обігрівач" { channel="mqtt:topic:flat_heater:power" }
+Number Heater_Setpoint "Уставка [%.1f °C]" { channel="mqtt:topic:flat_heater:setpoint" }
+Switch Heater_Heating "Обігрівач гріє [%s]" { channel="mqtt:topic:flat_heater:heating" }
+
+// ===== Віртуальні =====
+Switch Eco_Mode "Режим «Економ»"
+Switch Alarm_Overload "Перевантаження мережі"
+String Alert_Text "Сповіщення [%s]"
+
+// ===== Статуси (retain + Last Will) =====
+String Status_motion_livingroom "Рух вітальня: [%s]" { channel="mqtt:topic:flat_motion_livingroom:status" }
+String Status_motion_bedroom "Рух спальня: [%s]" { channel="mqtt:topic:flat_motion_bedroom:status" }
+String Status_temperature "Температура: [%s]" { channel="mqtt:topic:flat_temperature:status" }
+String Status_humidity "Вологість: [%s]" { channel="mqtt:topic:flat_humidity:status" }
+String Status_lux "Освітленість: [%s]" { channel="mqtt:topic:flat_lux:status" }
+String Status_power "Лічильник: [%s]" { channel="mqtt:topic:flat_power:status" }
+String Status_light_livingroom "Світло вітальня: [%s]" { channel="mqtt:topic:flat_light_livingroom:status" }
+String Status_light_bedroom "Світло спальня: [%s]" { channel="mqtt:topic:flat_light_bedroom:status" }
+String Status_heater "Обігрівач: [%s]" { channel="mqtt:topic:flat_heater:status" }
