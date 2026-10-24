@@ -1,9 +1,8 @@
 // ===== Налаштування =====
-// DEMO = true -> усі інтервали по 30 с (для відео та захисту)
-val boolean DEMO = false
-val int NO_MOTION_SEC  = if (DEMO) 30 else 300    // 5 хв без руху
-val int EMPTY_HOME_SEC = if (DEMO) 30 else 1800   // 30 хв нікого вдома
-val int OVERLOAD_SEC   = if (DEMO) 30 else 60     // 1 хв перевантаження
+// Зараз ДЕМО-значення. Для "бойового" режиму: NO_MOTION_SEC = 300, EMPTY_HOME_SEC = 1800, OVERLOAD_SEC = 60
+val int NO_MOTION_SEC  = 30    // без руху -> вимкнути світло (за ТЗ 5 хв)
+val int EMPTY_HOME_SEC = 30    // нікого вдома -> режим Економ (за ТЗ 30 хв)
+val int OVERLOAD_SEC   = 30    // перевантаження -> тривога (за ТЗ 1 хв)
 val int OVERLOAD_W     = 2500
 val int LUX_LIMIT      = 50
 val int LIGHT_LEVEL    = 70
@@ -70,6 +69,7 @@ rule "R2: режим Економ"
 when
     Item Motion_Livingroom changed or
     Item Motion_Bedroom changed or
+    Time cron "0/10 * * * * ?" or
     System started
 then
     val anyone = (Motion_Livingroom.state == ON) || (Motion_Bedroom.state == ON)
@@ -80,7 +80,8 @@ then
             Heater_Setpoint.sendCommand(COMFORT_SETPOINT)
             logInfo("flat", "R2: з'явився рух, уставка {} °C", COMFORT_SETPOINT)
         }
-    } else if (tEmpty === null) {
+    } else if (tEmpty === null && Eco_Mode.state != ON) {
+        logInfo("flat", "R2: нікого вдома, таймер Економ на {} с", EMPTY_HOME_SEC)
         tEmpty = createTimer(now.plusSeconds(EMPTY_HOME_SEC), [ |
             Eco_Mode.sendCommand(ON)
             Heater_Setpoint.sendCommand(ECO_SETPOINT)
